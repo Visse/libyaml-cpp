@@ -1,0 +1,1 @@
+This is a lightweight c++ wrapper around libyaml
