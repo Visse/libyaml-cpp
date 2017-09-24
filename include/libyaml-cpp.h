@@ -86,6 +86,13 @@ namespace libyaml
         bool operator ! () const {
             return type() == Type::Null;
         }
+        friend bool operator == ( const Node &lhs, const Node &rhs ) {
+            return lhs.mNode == rhs.mNode;
+        }
+        friend bool operator != ( const Node &lhs, const Node &rhs ) {
+            return lhs.mNode != rhs.mNode;
+        }
+
         bool isScalar() const {
             return type() == Type::Scalar;
         }
