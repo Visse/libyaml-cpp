@@ -4,6 +4,7 @@ project(libyaml-cpp)
 
 
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
+option (BUILD_TESTS "Build tests" ON)
 
 find_package(libyaml)
 
@@ -21,6 +22,14 @@ if(BUILD_SHARED_LIBS)
 else(BUILD_SHARED_LIBS)
     target_compile_definitions(libyaml-cpp PUBLIC LIBYAML_CPP_STATIC)
 endif(BUILD_SHARED_LIBS)
+
+if (BUILD_TESTS)
+    enable_testing()
+    
+    add_executable (tests tests/tests.cpp)
+    target_link_libraries(tests libyaml-cpp)
+    add_test (NAME tests COMMAND tests)
+endif (BUILD_TESTS)
 
 
 install(TARGETS libyaml-cpp
